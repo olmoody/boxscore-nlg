@@ -37,7 +37,7 @@ for sent in lines:
     # start = 0
     for last_index in range(cur_len):
         words = ["*empty*"]*(max_len)
-        offset = max(last_index-max_len,0)
+        offset = max(last_index-max_len+1,0)
         for i in range(min(last_index,max_len)):
             words[i]=sent[i+offset].lower()
         words[max_len-1]=sent[min(last_index,max_len+offset-1)].lower()
@@ -52,9 +52,9 @@ for sent in lines:
 #    if cur_len-start<max_len:
 #        break
     
-print(sequences[:20])
+print(sequences[:40])
 
-
+few
 
 # integer encode sequences of words
 tokenizer = Tokenizer()
@@ -92,7 +92,7 @@ dump(tokenizer, open('tokenizer.pkl', 'wb'))
 seq_length = 50
 result = list()
 in_text = ["*EMPTY*"]*18
-in_text = ['Harden', '26', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Harden', '8', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Harden', '10', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*']
+in_text = ['Durant', '26', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Durant', '8', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Durant', '10', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*']
 #in_text[18] = 'harden'
 # generate a fixed number of words
 out_word = ''

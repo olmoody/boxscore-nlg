@@ -17,16 +17,17 @@ print(lines[115])
 sent = lines[115]
 sequences = []
 for sent in lines:
+###    sent = ["0","1","2","3","4"]
     stats_list = []
     max_len = 15 + 1
-    cur_len = len(sent)-3
+    cur_len = len(sent)
 
 
     #lower??? #num2word??
     # start = 0
     for last_index in range(cur_len):
         words = ["*empty*"]*(max_len)
-        offset = max(last_index-max_len,0)
+        offset = max(last_index-max_len+1,0)
         for i in range(min(last_index,max_len)):
             words[i]=sent[i+offset]
         words[max_len-1]=sent[min(last_index,max_len+offset-1)]
@@ -38,8 +39,8 @@ for sent in lines:
 #    sequences.append(seq)
 #    if cur_len-start<max_len:
 #        break
-    
-print(sequences[:25])
+print(len(sequences))    
+print(sequences[:45])
 
 
 
@@ -71,11 +72,11 @@ print(model.summary())
 # compile model
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 # fit model
-#model.fit(X, y, batch_size=1024, epochs=25)
-#model.save('model.h5')
-#dump(tokenizer, open('tokenizer.pkl', 'wb'))
-#tokenizer = load(open('tokenizer.pkl', 'rb'))
-seq_length = 50
+model.fit(X, y, batch_size=512, epochs=35)
+model.save('nonamemodel.h5')
+dump(tokenizer, open('nonametokenizer.pkl', 'wb'))
+tokenizer = load(open('nonametokenizer.pkl', 'rb'))
+#seq_length = 50
 result = list()
 in_text = ["*empty*"]*15
 #in_text = ['Harden', '26', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Harden', '8', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Harden', '10', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*']
@@ -88,13 +89,13 @@ while out_word!="*end*" and count<101:
         encodedp = tokenizer.texts_to_sequences([in_text])[0]
         words = encodedp[18:]
 		# truncate sequences to a fixed length
-        stats_encoded = pad_sequences([encodedp], maxlen=18, truncating='post')
+        #stats_encoded = pad_sequences([encodedp], maxlen=15, truncating='post')
         words_encoded = pad_sequences([words], maxlen=seq_length, truncating='pre',value=1,padding='post')
 		# predict probabilities for each word
         #print(encodedp,[words],stats_encoded,words_encoded)
-        print(stats_encoded,words_encoded)
-        encoded = np.concatenate((stats_encoded, words_encoded), axis=1)
-        pred = model.predict(encoded)
+        print(words_encoded)
+        #encoded = np.concatenate((stats_encoded, words_encoded), axis=1)
+        pred = model.predict(words_encoded)
         yhat = np.random.choice(len(pred[0]), p=pred[0]) 
         #yhat = np.argmax(pred, axis=-1)
 		#yhat = model.predict_classes(encoded, verbose=0)
