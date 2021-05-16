@@ -23,6 +23,7 @@ in_text+=[game["box_score"]["REB"][str(i)] if str(i) in game["box_score"]["REB"]
 in_text+=[game["box_score"]["FIRST_NAME"][str(i)].lower() if str(i) in game["box_score"]["FIRST_NAME"].keys() else "*empty*" for i in range(26)]
 in_text+=[game["box_score"]["SECOND_NAME"][str(i)].lower() if str(i) in game["box_score"]["SECOND_NAME"].keys() else "*empty*" for i in range(26)]
 in_text = [i.lower() for i in in_text] 
+print(in_text)
 out_word = ''
 count = 0
 print(tokenizer.word_index["*empty*"])

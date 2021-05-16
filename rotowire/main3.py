@@ -2,14 +2,13 @@ from numpy import array
 import numpy as np
 from numpy import array
 from pickle import dump, load
-from keras.preprocessing.text import Tokenizer
-from keras.utils import to_categorical
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import LSTM
 from tensorflow.keras.layers import Embedding
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-
 import json
 with open('tagged_summaries_both.txt','r') as fr:
 	lines =json.load(fr)
@@ -79,11 +78,11 @@ print(model.summary())
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 # fit model
 
-model.fit(X, y, batch_size=1024, epochs=1)
+model.fit(X, y, batch_size=256, epochs=50)
 model.save('datafullmodel.h5')
 dump(tokenizer, open('datatokenizer.pkl', 'wb'))
 #tokenizer = load(open('datatokenizer.pkl', 'rb'))
-seq_length = 50
+seq_length = 15
 result = list()
 in_text = ["*EMPTY*"]*18
 in_text = ['Durant', '26', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Durant', '8', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Durant', '10', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*']
@@ -96,7 +95,7 @@ while out_word!="." and count<101:
         encodedp = tokenizer.texts_to_sequences([in_text])[0]
         words = encodedp[18:]
 		# truncate sequences to a fixed length
-        stats_encoded = pad_sequences([encodedp], maxlen=18, truncating='post')
+        stats_encoded = pad_sequences([encodedp], maxlen=130, truncating='post')
         words_encoded = pad_sequences([words], maxlen=seq_length, truncating='pre',value=1,padding='post')
 		# predict probabilities for each word
         #print(encodedp,[words],stats_encoded,words_encoded)
