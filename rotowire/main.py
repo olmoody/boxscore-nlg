@@ -2,8 +2,8 @@ from numpy import array
 import numpy as np
 from numpy import array
 from pickle import dump, load
-from keras.preprocessing.text import Tokenizer
-from keras.utils import to_categorical
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import LSTM
@@ -13,7 +13,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import json
 with open('tagged_summaries.txt','r') as fr:
 	lines =json.load(fr)
-print(lines[115])
+#print(lines[115])
 sent = lines[115]
 sequences = []
 for sent in lines:
@@ -54,7 +54,7 @@ for sent in lines:
     
 print(sequences[:40])
 
-few
+#few
 
 # integer encode sequences of words
 tokenizer = Tokenizer()
@@ -85,11 +85,11 @@ print(model.summary())
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 # fit model
 
-model.fit(X, y, batch_size=1024, epochs=25)
+model.fit(X, y, batch_size=256, epochs=50)
 model.save('model.h5')
 dump(tokenizer, open('tokenizer.pkl', 'wb'))
 #tokenizer = load(open('tokenizer.pkl', 'rb'))
-seq_length = 50
+#seq_length = 50
 result = list()
 in_text = ["*EMPTY*"]*18
 in_text = ['Durant', '26', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Durant', '8', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Durant', '10', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*']
