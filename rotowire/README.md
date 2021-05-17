@@ -1,6 +1,6 @@
 Data used in [Challenges in Data-to-Document Generation](https://arxiv.org/abs/1707.08052) (Wiseman, Shieber, Rush; EMNLP 2017).
 
-#Getting Started
+# Getting Started
 Upon cloning this repository you should first extract the data as detailed in the parent directory: run `tar -jxvf rotowire.tar.bz2` to add data to rotowire/ directory. You can optionally create a virtual environment to run python scripts using "virtualenv venv" and "source  venv/bin/activate". Then run "pip install -r requirements.txt". If you run into the error of the tensorflow version not being available (I encountered on linux), you can comment out the first line of requirements.txt and run pip install tensorflow separately.
 
 ## Files and Directories
