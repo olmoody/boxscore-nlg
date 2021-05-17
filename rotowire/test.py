@@ -2,13 +2,13 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from pickle import load
 import numpy as np
 from tensorflow.keras.models import load_model
-model = load_model('bestmodel.h5')
-tokenizer = load(open('besttokenizer.pkl', 'rb'))
+model = load_model('model.h5')
+tokenizer = load(open('tokenizer.pkl', 'rb'))
 
-seq_length = 18
+seq_length = 15
 result = list()
 in_text = ["*EMPTY*"]*18
-in_text = ['Harden', '26', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Harden', '8', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Harden', '10', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*']
+in_text = ['Durant', '26', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Durant', '8', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*', 'Durant', '10', '*EMPTY*', '*EMPTY*', '*EMPTY*', '*EMPTY*']
 in_text = [i.lower() for i in in_text] 
 out_word = ''
 count = 0

@@ -19,7 +19,7 @@ def get_key(val,my_dict):
     return keys
 new_sum = []
 hi =0
-for game in full_dict[:40]:
+for game in full_dict:
 	#split summary into sentences
     old_sum = game["summary"]
 
@@ -65,10 +65,16 @@ for game in full_dict[:40]:
                                 found = 1
                                 reb_dict["*lastname{}*".format(k)]=tok
                 cur_sent[i] = tok
-            cur_sent.append("*end*")
-            cur_sent.append(pts_dict)
-            cur_sent.append(ast_dict)
-            cur_sent.append(reb_dict)
+#            cur_sent.append("*end*")
+#            cur_sent.append(pts_dict)
+#            cur_sent.append(ast_dict)
+#            cur_sent.append(reb_dict)
+            cur_sent.append([game["box_score"]["PTS"][str(i)] if str(i) in game["box_score"]["PTS"].keys() else "*empty*" for i in range(26)])
+            cur_sent.append([game["box_score"]["AST"][str(i)] if str(i) in game["box_score"]["AST"].keys() else "*empty*" for i in range(26)])
+            cur_sent.append([game["box_score"]["REB"][str(i)] if str(i) in game["box_score"]["REB"].keys() else "*empty*" for i in range(26)])
+            cur_sent.append([game["box_score"]["FIRST_NAME"][str(i)].lower() if str(i) in game["box_score"]["FIRST_NAME"].keys() else "*empty*" for i in range(26)])
+            cur_sent.append([game["box_score"]["SECOND_NAME"][str(i)].lower() if str(i) in game["box_score"]["SECOND_NAME"].keys() else "*empty*" for i in range(26)])
+ 
             if found:
                 new_sum.append(cur_sent)
 #            print(cur_sent)
@@ -78,7 +84,7 @@ for game in full_dict[:40]:
 #print(game["box_score"]["PTS"]["20"],game["box_score"]["SECOND_NAME"]["20"],game["box_score"]["AST"]["20"])
 #print(new_sum)
 #print(hi)
-with open('tagged_summaries_both.txt','w') as fw:
+with open('tagged_summaries_noname_dicts.txt','w') as fw:
     sum_json = json.dump(new_sum,fw)
 
 #[["All-Star", "*firsttname*", "*lastname*", "once", "again", "led", "Boston", "with", "*ptsval*", "points", ",", "while", "star", "center", "*firsttname*", "*lastname*", "scored", "*ptsval*", "points", "and", "stuffed", "the", "stat", "sheet", "with", "*rebval*", "rebounds", ",", "*astval*", "assists", ",", "*ptsval*", "steals", ",", "and", "*rebval*", "blocks", ".", "*end*"], ["Third-year", "point", "guard", "*firsttname*", "*lastname*", "impressed", "off", "the", "bench", ",", "dishing", "*astval*", "assists", "and", "scoring", "*ptsval*", "points", "including", "the", "game", "-", "winning", "3", "-", "pointer", ".", "*end*"], ["Sophomore", "big", "man", "*firsttname*", "*lastname*", "had", "*ptsval*", "points", "and", "*rebval*", "rebounds", "as", "well", "as", "4", "blocks", ".", "*end*"]]

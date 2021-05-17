@@ -1,7 +1,7 @@
 import json
 from text_to_num import alpha2digit
 
-with open('train.json','r') as fr:
+with open('test.json','r') as fr:
 	d = fr.read()
 	full_dict = json.loads(d)
 	#print(d[0]["box_score"]["SECOND_NAME"].values())
@@ -65,8 +65,8 @@ for game in full_dict:
 			cur_sent = []
 #print(new_sum[0])
 print(hi)
-# with open('tagged_summaries.txt','w') as fw:
-# 	sum_json = json.dump(new_sum,fw)
+with open('tagged_test_summaries.txt','w') as fw:
+	sum_json = json.dump(new_sum,fw)
 	#fw.write(sum_json)
 
 #for each sentence
