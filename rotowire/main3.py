@@ -10,7 +10,7 @@ from tensorflow.keras.layers import LSTM
 from tensorflow.keras.layers import Embedding
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import json
-with open('tagged_summaries_both.txt','r') as fr:
+with open('tagged_summaries_noname_dicts.txt','r') as fr:
 	lines =json.load(fr)
 #pts_list = ["*ptsval{}*".format(i) for i in range(26)]
 #ast_list = ["*astval{}*".format(i) for i in range(26)]

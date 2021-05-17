@@ -39,8 +39,8 @@ while out_word!="." and count<101:
         print(stats_encoded,words_encoded)
         encoded = np.concatenate((stats_encoded, words_encoded), axis=1)
         pred = model.predict(encoded)
-        yhat = np.random.choice(len(pred[0]), p=pred[0]) 
-        #yhat = np.argmax(pred, axis=-1)
+        #yhat = np.random.choice(len(pred[0]), p=pred[0]) 
+        yhat = np.argmax(pred, axis=-1)
 		#yhat = model.predict_classes(encoded, verbose=0)
 		# map predicted word index to word
         #print(in_text,encoded,pred,yhat)
