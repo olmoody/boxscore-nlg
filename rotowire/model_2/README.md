@@ -15,3 +15,6 @@ This project is made up of the following files:
 * results.txt     - Output of full-test.py
 * nonamemodel.h5     - Saved binary of model
 * nonametokenizer.pkl     - Saved binary of tokenizer
+* testmodel/make_test_sentences.py     - Generate list of real sentences by reading '../../model_1/tagged_test_summaries.txt' and including every sentence where at least 1 stat was found. Output to testmodel/stat_sentences_test.txt
+* testmodel/runtest.py    - Read real sentences from testmodel/stat_sentences_test.txt and generated sentences from results.txt. Randomize order and display one of each. Prompt user to guess which sentence is real. Record and print results.
+* testmodel/stat_sentences_test.txt   - Output of testmodel/make_test_sentences.py Input for testmodel/runtest.py 
