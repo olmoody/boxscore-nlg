@@ -2,8 +2,8 @@ from numpy import array
 import numpy as np
 from numpy import array
 from pickle import dump, load
-from keras.preprocessing.text import Tokenizer
-from keras.utils import to_categorical
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import LSTM
@@ -62,7 +62,7 @@ print(model.summary())
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # fit model
-model.fit(X, y, batch_size=512, epochs=35)
+model.fit(X, y, batch_size=256, epochs=50)
 
 # save model
 model.save('nonamemodel.h5')
