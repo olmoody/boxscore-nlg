@@ -26,8 +26,10 @@ for i in range(25): #do 25 trials
 	if random.randint(0,1)==1: # random order
 		sents = sents[::-1]
 		real_ind = 2
-	print(sents)
+	print("1.",sents[0])
+	print("2.",sents[1])
 	s= input("{}. Guess the real sentence (1 or 2) ".format(i+1))
 	if s==str(real_ind):
 		correct+=1
+	print()
 print("You guessed",correct,"out of 25") #print results
