@@ -1,6 +1,6 @@
 Data used in [Challenges in Data-to-Document Generation](https://arxiv.org/abs/1707.08052) (Wiseman, Shieber, Rush; EMNLP 2017).
 
-#Getting Started
+# Getting Started
 See rotowire/README.md for directions
 
 # Data
