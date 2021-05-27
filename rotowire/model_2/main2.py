@@ -11,6 +11,9 @@ from tensorflow.keras.layers import Embedding
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import json
 
+
+### Model 2 - Text-to-text model. No original input. Text tagged with generic values for names and stats. Captures essence of summaries then replaces tags with values. ###
+
 with open('tagged_summaries_no_names.txt','r') as fr: #read sentences
 	lines =json.load(fr)
 

@@ -11,6 +11,10 @@ from tensorflow.keras.layers import Embedding
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import json
 
+
+### Model 1 - Specific stats to text model. Input in the form of [Player 1, player 1 pts, Player 2, player 2 pts, Player 3, player 3 pts, Player 4, player 4 ast, Player 5, player 5 ast, Player 6, player 6 ast, Player 7, player 7 reb, Player 8, player 8 reb, Player 9, player 9 reb] ###
+
+
 with open('tagged_summaries.txt','r') as fr: #read sentences
 	lines =json.load(fr)
 
