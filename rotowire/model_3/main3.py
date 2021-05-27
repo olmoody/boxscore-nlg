@@ -11,6 +11,8 @@ from tensorflow.keras.layers import Embedding
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import json
 
+### Model 3 - Full box score to text model. Input in form of lists of stats. Text tagged with generic values for names and stats with index. ###
+
 with open('tagged_summaries_noname_dicts.txt','r') as fr:
 	lines =json.load(fr)
 
